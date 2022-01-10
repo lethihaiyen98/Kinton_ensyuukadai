@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <!-- <link rel="stylesheet" href="日報検索.css"> -->
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/redmond/jquery-ui.css">
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/ui-lightness/jquery-ui.css">
+</head>
+  <!-- 検索項目の作成と結果表示
+
+  ・「日報検索」の名称で一覧を作成する
+  　※レコード一覧の表示形式＝カスタマイズで作成すること
+  　　（カスタマイズビューの利用については、cybozu developer networkを参照）
+
+  ・「日報検索」の表示時に、下記の検索条件の入力項目、検索ボタン、検索結果一覧を、JavaScriptで動的に生成して配置する
+  　※検索条件の入力項目は、カスタマイズビューの表示エリア内の上部にバランスよく配置し、その下側に検索ボタンを配置する
+  　　さらに、検索ボタンの下側に、検索結果一覧を配置する
+  　※検索条件の入力項目、検索ボタン、検索結果一覧の動的生成・配置は、DOM操作にて行う
+  　　また、kintoneライクな入力項目・ボタンにするため、スタイルシート「51-modern-default.css」を使用する
+  　　（動的に生成する要素の構造や適用するクラスについては、cybozu developer networkのスタイルシート対応表を参照） -->
+<body>
+  <h2 style="margin-left: 25px;">日報検索</h2>
+  <!-- 作成日（開始日～終了日の形式）
+　　　開始日と終了日ともに、入力方式はテキストボックスとする
+    スタイルは51-modern-default.cssのkintoneplugin-input-outer、kintoneplugin-input-textクラスを使用すること -->
+  <form>
+    <div class="row">
+      <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+        <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <div style="margin:5px 25%">
+              <div class="kintoneplugin-label">作業日（開始日～終了日の形式）</div>
+              <div class="kintoneplugin-input-outer">
+                <div style="text-align: left; display: flex;">
+                  <input class="kintoneplugin-input-text" id="datepicker" type="text" placeholder="MM/DD/YYYY">
+                  <p style="margin: auto;"> &nbsp; ~ &nbsp;</p>
+                  <input class="kintoneplugin-input-text" id="datepicker1" type="text"placeholder="MM/DD/YYYY">
+                </div>
+              </div>
+            </div> 
+          </div>
+            <!-- 担当者
+  　　　入力方式はドロップダウンとする
+  　　　スタイルは51-modern-default.cssのkintoneplugin-select-outer、kintoneplugin-selectクラスを使用すること -->
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <div style="margin:5px 25%">
+              <div class="kintoneplugin-label">担当者</div>
+              <div class="kintoneplugin-select-outer" id="recordUsers">
+              </div>
+            </div>
+          </div>
+        </div>
+          <!-- カテゴリ
+  　　　入力方式はチェックボックスとする
+  　　　スタイルは51-modern-default.cssのkintoneplugin-input-checkbox、kintoneplugin-input-checkbox-itemクラスを使用すること -->
+      </div>
+      <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+        <div style="margin:5px 25% ;">
+          <div class="kintoneplugin-label" id="categories">カテゴリ</div>
+        </div>
+      </div>
+    </div>
+    </div>
+      <!-- 検索ボタン
+  　　　スタイルは51-modern-default.cssのkintoneplugin-button-normalクラスを使用すること -->
+    <div style="text-align:center;">
+      <button class="kintoneplugin-button-normal" id="submit">検索</button>
+    </div>
+  </form>
+  <br>
+    <!-- 検索結果一覧
+  　　　表示形式はテーブルとする
+  　　　表示項目は「担当者」「プロジェクトコード」「プロジェクト名」「カテゴリ」「作業時間」とする
+  　　　また、ライブラリを使用してデザインや操作性を向上させ、リッチなUIとすること（どのライブラリを使用されても結構です） -->
+  <div class="bound-table">
+    <table class="kintoneplugin-table">
+      <thead>
+        <tr>
+          <th class="kintoneplugin-table-th"><span class="title">担当者</span></th>
+          <th class="kintoneplugin-table-th"><span class="title">プロジェクトコード</span></th>
+          <th class="kintoneplugin-table-th"><span class="title">プロジェクト名</span></th>
+          <th class="kintoneplugin-table-th"><span class="title">カテゴリ</span></th>
+          <th class="kintoneplugin-table-th"><span class="title">作業時間</span></th>
+          <!-- <th class="kintoneplugin-table-th-blankspace"></th> -->
+        </tr>
+      </thead>
+      <tbody id="recordContent">
+      </tbody>
+    </table>
+  </div>
+</body>
+
+</html>
