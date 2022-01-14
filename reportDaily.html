@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/redmond/jquery-ui.css">
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/ui-lightness/jquery-ui.css">
+</head>
+<body>
+  <h2 style="margin-left: 25px;">日報検索</h2>
+  <form>
+    <div class="row">
+      <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+        <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <div style="margin:5px 25%">
+              <div class="kintoneplugin-label">作業日（開始日～終了日の形式）</div>
+              <div class="kintoneplugin-input-outer">
+                <div style="text-align: left; display: flex;">
+                  <input class="kintoneplugin-input-text" id="datepicker" type="text" placeholder="YYYY-MM-DD">
+                  <p style="margin: auto;"> &nbsp; ~ &nbsp;</p>
+                  <input class="kintoneplugin-input-text" id="datepicker1" type="text"placeholder="YYYY-MM-DD">
+                </div>
+              </div>
+            </div> 
+          </div>
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <div style="margin:5px 25%">
+              <div class="kintoneplugin-label">担当者</div>
+              <div class="kintoneplugin-select-outer" id="recordUsers">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+        <div style="margin:5px 25% ;">
+          <div class="kintoneplugin-label">カテゴリ</div>
+          <div id="categories" style="column-count: 2"></div>
+        </div>
+      </div>
+    </div>
+    </div>
+    <div style="text-align:center;">
+      <button class="kintoneplugin-button-normal" id="submit">検索</button>
+    </div>
+  </form>
+  <br>
+  <div class="bound-table">
+    <table class="kintoneplugin-table">
+      <thead>
+        <tr>
+          <th class="kintoneplugin-table-th"><span class="title">担当者</span></th>
+          <th class="kintoneplugin-table-th"><span class="title">プロジェクトコード</span></th>
+          <th class="kintoneplugin-table-th"><span class="title">プロジェクト名</span></th>
+          <th class="kintoneplugin-table-th"><span class="title">カテゴリ</span></th>
+          <th class="kintoneplugin-table-th"><span class="title">作業時間</span></th>
+        </tr>
+      </thead>
+      <tbody id="recordContent">
+      </tbody>
+    </table>
+  </div>
+</body>
+
+</html>
